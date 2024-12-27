@@ -4,9 +4,9 @@ const app = express();
 
 app.use(express.json());
 
-app.get('/api/libros', async (req, res) => {
-    const query = req.query.q || 'book';  // Cambia la consulta a algo común como 'book'
-    const url = `https://openlibrary.org/search.json?q=${query}`;
+app.get('/api/books', async (req, res) => {
+    // const query = req.query.q || 'twain';  // Cambia la consulta a algo común como 'book'
+    const url = `https://gutendex.com/books/?search=austen`;
 
     try {
         const response = await fetch(url);
@@ -16,6 +16,7 @@ app.get('/api/libros', async (req, res) => {
         if (!data.docs || data.docs.length === 0) {
             return res.json([]);  // Devolver un arreglo vacío si no se encontraron libros
         }
+        
 
         const libros = data.docs.map(libro => ({
             title: libro.title,

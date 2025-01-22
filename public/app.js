@@ -15,8 +15,11 @@ const addViewBookListeners = () => {
 
 const handleViewBookClick = (e) => {
   const url = e.target.dataset.url;
-  if (!url) {
-    alert("El contenido del libro no está disponible.");
+
+  if (!url || !url.startsWith("https://")) {
+    alert(
+      "El contenido del libro no está disponible o no está en una conexión segura."
+    );
     return;
   }
 
@@ -27,7 +30,7 @@ const handleViewBookClick = (e) => {
   iframeContainer.innerHTML = `
     <button id="back-btn">Atrás</button>
     <div style="width: 100%; height: 90vh; padding: 20px;">
-      <iframe src="${url}" style="width: 100%; height: 100%; border: none;"></iframe>
+      <iframe src="${url}" style="width: 100%; height: 100%; border: none;" onerror="this.parentElement.innerHTML='No se pudo cargar el contenido del libro.'"></iframe>
     </div>
   `;
 
@@ -37,6 +40,7 @@ const handleViewBookClick = (e) => {
     document.getElementById("books-container").style.display = "grid";
   });
 };
+
 
 document.addEventListener("DOMContentLoaded", async () => {
   const featuredBooksList = await fetchFeaturedBooks();

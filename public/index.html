@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Virtual</title>
+    <link rel="shortcut icon" href="../resources/author.svg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="tittle">
+        <h1>Biblioteca Virtual</h1>
+        <img src="../resources/author.svg" alt="">
+    </div>
+
+    <div class="buscar">
+
+        <h2>Explora Nuestra Colección</h2>
+
+
+        <input type="text" id="search-query" placeholder="Buscar libros...">
+        <button id="search-btn">Buscar</button>
+    </div>
+
+    <div id="loading-spinner" class="hidden">
+        <div class="spinner"></div>
+    </div>
+
+    <div id="books-container"></div>
+    <div id="no-results" class="hidden">
+        <h3>No se encontraron resultados</h3>
+        <p>Intenta con otra búsqueda o explora nuestra colección destacada.</p>
+    </div>
+    <div id="featured-books" class="hidden">
+        <h2>Libros Destacados(Diferentes idiomas)</h2>
+        <div id="featured-books-container"></div>
+    </div>
+    <div id="iframe-container" style="display: none;"></div>
+
+    <script src="app.js" type="module"></script>
+</body>
+
+</html>

@@ -1,4 +1,3 @@
-
 export const createBookCard = (book) => {
   const bookCard = document.createElement("div");
   bookCard.className = "book";
@@ -31,7 +30,7 @@ export const createBookCard = (book) => {
     <p>Idioma: ${language}</p>
     <img src="${book.formats["image/jpeg"]?.replace("http://", "https://") || ""}" 
          alt="Portada del libro" style="width: 100px; height: auto;"/>
-    <button class="view-book-btn" data-url="${bookUrl}">Ver contenido</button>
+    <a href="${bookUrl}" class="view-book-btn" data-url="${bookUrl}">Ver contenido</a>
   `;
 
   return bookCard;

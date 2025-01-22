@@ -4,7 +4,6 @@ import { createBookCard } from "../components/bookCard.js";
 
 const searchBtn = document.getElementById("search-btn");
 const searchQueryInput = document.getElementById("search-query");
-const iframeContainer = document.getElementById("iframe-container");
 
 const addViewBookListeners = () => {
   document.querySelectorAll(".view-book-btn").forEach((button) => {
@@ -28,22 +27,8 @@ const handleViewBookClick = async (e) => {
     return;
   }
 
-  document.getElementById("books-container").style.display = "none";
-  iframeContainer.style.display = "flex";
-  iframeContainer.classList.add("active");
-
-  iframeContainer.innerHTML = `
-    <button id="back-btn">Atrás</button>
-    <div style="width: 100%; height: 90vh; padding: 20px;">
-      <iframe src="${url}" style="width: 100%; height: 100%; border: none;" onerror="this.parentElement.innerHTML='No se pudo cargar el contenido del libro.'"></iframe>
-    </div>
-  `;
-
-  document.getElementById("back-btn").addEventListener("click", () => {
-    iframeContainer.style.display = "none";
-    iframeContainer.classList.remove("active");
-    document.getElementById("books-container").style.display = "grid";
-  });
+  // Redirigir a la URL en la misma pestaña
+  window.location.href = url;
 };
 
 document.addEventListener("DOMContentLoaded", async () => {

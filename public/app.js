@@ -13,7 +13,7 @@ const addViewBookListeners = () => {
   });
 };
 
-const handleViewBookClick = (e) => {
+const handleViewBookClick = async (e) => {
   let url = e.target.dataset.url;
 
   // Forzar HTTPS
@@ -45,7 +45,6 @@ const handleViewBookClick = (e) => {
     document.getElementById("books-container").style.display = "grid";
   });
 };
-
 
 document.addEventListener("DOMContentLoaded", async () => {
   const featuredBooksList = await fetchFeaturedBooks();

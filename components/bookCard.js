@@ -5,13 +5,16 @@ export const createBookCard = (book) => {
     const language = book.languages.includes("es") ? "Español" : "Inglés";
 
     // Filtrar URL solo si está disponible en HTTPS
-    const bookUrl =
+    let bookUrl =
         book.formats["text/html"] || book.formats["text/html; charset=utf-8"] || "";
 
-    const secureBookUrl = bookUrl.replace("http://", "https://"); // Forzar HTTPS
+    // Forzar HTTPS
+    if (bookUrl.startsWith("http://")) {
+        bookUrl = bookUrl.replace("http://", "https://");
+    }
 
     // Verificar si la URL es segura
-    if (!secureBookUrl.startsWith("https://")) {
+    if (!bookUrl.startsWith("https://")) {
         bookCard.innerHTML = `
           <h3>${book.title}</h3>
           <p>Autor: ${book.authors.map((author) => author.name).join(", ") || "Desconocido"}</p>
@@ -27,7 +30,7 @@ export const createBookCard = (book) => {
       <p>Idioma: ${language}</p>
       <img src="${book.formats["image/jpeg"]?.replace("http://", "https://") || ""}" 
            alt="Portada del libro" style="width: 100px; height: auto;"/>
-      <button class="view-book-btn" data-url="${secureBookUrl}">Ver contenido</button>
+      <button class="view-book-btn" data-url="${bookUrl}">Ver contenido</button>
     `;
 
     return bookCard;

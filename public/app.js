@@ -14,7 +14,12 @@ const addViewBookListeners = () => {
 };
 
 const handleViewBookClick = (e) => {
-  const url = e.target.dataset.url;
+  let url = e.target.dataset.url;
+
+  // Forzar HTTPS
+  if (url.startsWith("http://")) {
+    url = url.replace("http://", "https://");
+  }
 
   if (!url || !url.startsWith("https://")) {
     alert(

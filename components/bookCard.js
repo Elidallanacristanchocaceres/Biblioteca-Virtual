@@ -12,8 +12,13 @@ export const createBookCard = (book) => {
 
     // Verificar si la URL es segura
     if (!secureBookUrl.startsWith("https://")) {
-        alert("El contenido del libro no está disponible en una conexión segura.");
-        return null; // Detener la creación de la tarjeta
+        bookCard.innerHTML = `
+          <h3>${book.title}</h3>
+          <p>Autor: ${book.authors.map((author) => author.name).join(", ") || "Desconocido"}</p>
+          <p>Idioma: ${language}</p>
+          <p style="color: red;">El contenido del libro no está disponible en una conexión segura.</p>
+        `;
+        return bookCard; // Detener la creación de la tarjeta
     }
 
     bookCard.innerHTML = `
